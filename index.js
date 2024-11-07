@@ -37,4 +37,4 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/manageUsers', userManagementRoutes);
 app.use('/api', apiRoutes);
 
-app.listen(PORT, () => console.log("Sever is running on port ", PORT))
+export default app;
