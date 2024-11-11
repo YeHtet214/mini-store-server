@@ -15,7 +15,6 @@ export default async function handler(req, res) {
         }
     } else if (req.method === 'POST') {
         const userData = req.body;
-
         try {
             const createdUser = await UserService.createNewUserByAdmin(userData);
             return res.status(200).json(createdUser);

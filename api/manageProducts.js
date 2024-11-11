@@ -17,9 +17,16 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
     if (req.method === 'GET') {
+        const { id } = req.query;
+
         try {
-            const products = await api.getAllProducts();
-            return res.status(200).json(products);
+            if (id) { // get product by id
+                const product = await ProductService.getProductById(id);
+                return res.status(200).json(product);
+            } else {
+                const products = await api.getAllProducts();
+                return res.status(200).json(products);
+            }
         } catch (error) {
             console.error('Error fetching products:', error);
             return res.status(500).json({ error: 'Failed to fetch products' });
