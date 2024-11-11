@@ -15,7 +15,7 @@ export default function handler(req, res) {
     if (req.method === "GET") {
         passport.authenticate("google", async (err, user, info) => {
             if (err || !user) {
-                return res.redirect("https://mini-store-omega.vercel.app/login?error=oauth_failed");
+                return res.redirect("http://localhost:5173/auth/login?error=oauth_failed");
             }
 
             try {
@@ -32,7 +32,7 @@ export default function handler(req, res) {
                     ({ token, user_id } = await UserService.registerUser(user.name, user.email, user.password, role));
                 }
 
-                res.redirect(`http://localhost:5173?token=${token}&user_id=${user_id}`);
+                res.redirect(`shttp://localhost:5173?token=${token}&uer_id=${user_id}`);
 
             } catch (error) {
                 console.error("Error in Google callback:", error);
