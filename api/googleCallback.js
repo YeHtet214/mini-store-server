@@ -4,7 +4,7 @@ import * as UserService from "../services/userService.js";
 const origins = ["https://mini-store-omega.vercel.app", "http://localhost:5173"];
 
 export default function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', origins);
+    res.setHeader('Access-Control-Allow-Origin', origins.join(", "));
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -32,7 +32,7 @@ export default function handler(req, res) {
                     ({ token, user_id } = await UserService.registerUser(user.name, user.email, user.password, role));
                 }
 
-                res.redirect(`https://mini-store-omega.vercel.app?token=${token}&user_id=${user_id}`);
+                res.redirect(`http://localhost:5173?token=${token}&user_id=${user_id}`);
 
             } catch (error) {
                 console.error("Error in Google callback:", error);
