@@ -27,7 +27,7 @@ export default function handler(req, res) {
 
             } catch (error) {
                 console.error("Error in Google callback:", error);
-                return res.status(500).json({ msg: "Server error" });
+                return res.status(500).json({ msg: error.message });
             }
         })(req, res);
     } else {

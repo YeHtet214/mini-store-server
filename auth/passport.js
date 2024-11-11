@@ -12,7 +12,14 @@ passport.use(
         },
         async (accessToken, refreshToken, profile, cb) => {
             try {
-                const user = { name: profile.displayName, email: profile.email, password: profile.id }
+                const email = profile.emails && profile.emails[0] && profile.emails[0].value;
+                if (!email) throw new Error("Email not found in profile");
+
+                const user = {
+                    name: profile.displayName,
+                    email,
+                    password: profile.id
+                }
                 cb(null, user);
             } catch (err) {
                 cb(err);
