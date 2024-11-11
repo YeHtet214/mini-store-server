@@ -28,28 +28,12 @@
       "dest": "/api/product-by-id.js"
     },
     {
-      "src": "/api/orders",
-      "dest": "/api/orders/get-orders.js"
-    },
-    {
       "src": "/api/orders/items",
-      "dest": "/api/orders/get-order-items.js"
+      "dest": "/api/get-order-items.js"
     },
     {
-      "src": "/api/orders/create",
-      "dest": "/api/orders/create-order.js"
-    },
-    {
-      "src": "/api/orders/add-address",
-      "dest": "/api/orders/add-address.js"
-    },
-    {
-      "src": "/api/orders/update-status",
-      "dest": "/api/orders/update-order-status.js"
-    },
-    {
-      "src": "/api/orders/delete",
-      "dest": "/api/orders/delete-order.js"
+      "src": "/api/orders",
+      "dest": "/api/manageOrders.js"
     },
     {
       "src": "/api/users",
