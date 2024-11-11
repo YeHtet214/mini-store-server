@@ -20,12 +20,56 @@
       "dest": "/api/cart/update.js"
     },
     {
-      "src": "/api/product",
-      "dest": "/api/product.js"
+      "src": "/api/products",
+      "dest": "/api/products/get-products.js"
     },
     {
-      "src": "/api/order",
-      "dest": "/api/order.js"
+      "src": "/api/products/add",
+      "dest": "/api/products/add-products.js"
+    },
+    {
+      "src": "/api/products/update",
+      "dest": "/api/products/update-product.js"
+    },
+    {
+      "src": "/api/products/delete",
+      "dest": "/api/products/delete-products.js"
+    },
+    {
+      "src": "/api/orders",
+      "dest": "/api/orders/get-orders.js"
+    },
+    {
+      "src": "/api/orders/items",
+      "dest": "/api/orders/get-order-items.js"
+    },
+    {
+      "src": "/api/orders/create",
+      "dest": "/api/orders/create-order.js"
+    },
+    {
+      "src": "/api/orders/add-address",
+      "dest": "/api/orders/add-address.js"
+    },
+    {
+      "src": "/api/orders/update-status",
+      "dest": "/api/orders/update-order-status.js"
+    },
+    {
+      "src": "/api/orders/delete",
+      "dest": "/api/orders/delete-order.js"
+    },
+    {
+      "src": "/api/manageUsers/create",
+      "dest": "/api/manageUsers/create-user.js"
+    },
+    {
+      "src": "/api/manageUsers/update",
+      "dest": "/api/manageUsers/update-user.js"
+    },
+    {
+      "src": "/api/manageUsers/delete",
+      "dest": "/api/manageUsers/delete-user.js"
     },
     {
       "src": "/api/google",

@@ -1,4 +1,4 @@
-import * as UserService from '../services/userService.js';
+import * as UserService from '../../services/userService.js';
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*'); // or your specific origin
