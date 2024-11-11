@@ -1,7 +1,7 @@
 import passport from "../auth/passport.js";
 import * as UserService from "../services/userService.js";
 
-const origins = ["https://mini-store-omega.vercel.app", "http://localhost:5173"];
+const origins = ["https://mini-store-omega.vercel.app", "http://localhost:5173/auth/login"];
 
 export default function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', origins.join(", "));
