@@ -7,12 +7,12 @@ passport.use(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: "/api/auth/google/callback",
+            callbackURL: "https://ministore-server.vercel.app/api/googleCallback",
             userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
         },
         async (accessToken, refreshToken, profile, cb) => {
             try {
-                const user = { name: profile.displayName, email: profile.emails[0].value, password: profile.id }
+                const user = { name: profile.displayName, email: profile.email, password: profile.id }
                 cb(null, user);
             } catch (err) {
                 cb(err);
@@ -22,7 +22,7 @@ passport.use(
 )
 
 passport.serializeUser((user, done) => {
-    done(null, user);
+    done(null, user.email);
 })
 
 passport.deserializeUser((user, done) => {

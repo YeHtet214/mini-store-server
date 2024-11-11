@@ -4,8 +4,8 @@ import { bulkCreate, checkIfDataFetched } from "../utils/index.js";
 
 const config = {
     params: {
-        offset: 0,
-        limit: 20
+        offset: 5,
+        limit: 5
     }
 }
 
@@ -14,8 +14,7 @@ export const getAllProducts = async () => {
 
     try {
         if (await checkIfDataFetched()) { // Check to fetch or not, if data exist no longer fetch from api
-            const products = await ProductServices.getAllProductsFromDb();
-            return products;
+            return await ProductServices.getAllProductsFromDb();
         }
         const response = await axios.get(url, config);
         const products = response.data;

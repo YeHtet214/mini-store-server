@@ -3,7 +3,7 @@ import { createNewProduct, getAllProductsFromDb } from "../services/productServi
 export const checkIfDataFetched = async () => {
       try {
             const products = await getAllProductsFromDb();
-            return (true ? products.length : false);
+            return products.length > 0;
       } catch (error) {
             console.log(error);
       }
