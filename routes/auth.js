@@ -1,29 +1,14 @@
 import express from "express";
-import passport from "passport";
-import GoogleStrategy from "passport-google-oauth2";
+import passport from "../auth/passport.js";
 import "dotenv/config";
 import * as UserService from '../services/userService.js';
 import auth from "../middlewares/auth.js";
+import handler from "../api/login.js";
 
 const router = express.Router();
 
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    console.log(req.body)
-    try {
-        const {token, user_id} = await UserService.authenticateUser(email, password);
-        console.log("Login result: ", token, user_id)
-        return res.json({ token, user_id });
-    } catch(err) {
-        console.log(err);
-        if (err.message === 'Email not found') {
-        res.status(400).json({message: 'Email not found'});
-        } else if (err.message === 'Incorrect Password') {
-        res.status(401).json({message: 'Incorrect Password'});
-        } else {
-            res.status(500).send("Server error");
-        }
-    }
+    return handler(req, res);
 });
 
 router.post('/register', async (req, res) => {
@@ -84,7 +69,7 @@ router.get(
                 return res.redirect(`http://localhost:5173?token=${token}&user_id=${user_id}`);
             } else {
                 const { token, user_id } = await UserService.registerUser(user.name, user.email, user.password, role);
-                return res.redirect(`http://localhost:5173?token=${token}&user_id=${user_id}`);
+                return res.json({ success: true, token, user_id });
             }
         } catch(err) {
             console.log(err);
@@ -92,37 +77,5 @@ router.get(
         }
     }
 )
-
-passport.use(
-    "google",
-    new GoogleStrategy(
-        {
-            clientID: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: "http://localhost:5000/auth/google/callback",
-            userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
-        },
-        async (accessToken, refreshToken, profile, cb) => {
-            try {
-                const user = { name: profile.displayName, email: profile.email, password: profile.id }
-                cb(null, user);
-            } catch (err) {
-                cb(err);
-            }
-        }
-    )
-)
-
-passport.serializeUser((user, done) => {
-    done(null, user.email);
-})
-
-passport.deserializeUser((user, done) => {
-try {
-    done(null, user);
-} catch (error) {
-    done(err, null);
-}
-})
 
 export default router;

@@ -82,7 +82,7 @@ export const authenticateUser = async (email, enterPassword) => {
             role: userData.email === "yhtet1934@gmail.com" ? "admin" : userData.role === "admin" ? "admin" : "user"
       }
       const token = jwt.sign(payload, jwt_secret);
-      return {token, user_id: userData.user_id};
+      return {token, user_id: userData.user_id };
 }
 
 export const deleteUser = async (userId) => {

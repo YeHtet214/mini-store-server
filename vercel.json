@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.js",
+      "src": "api/**/*.js",
       "use": "@vercel/node"
     },
     {
@@ -12,8 +12,44 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/index.js"
+      "src": "/api/cart/([^/]+)/cartItems",
+      "dest": "/api/cart/[user_id].js"
+    },
+    {
+      "src": "/api/cart/items/update",
+      "dest": "/api/cart/update.js"
+    },
+    {
+      "src": "/api/product",
+      "dest": "/api/product.js"
+    },
+    {
+      "src": "/api/order",
+      "dest": "/api/order.js"
+    },
+    {
+      "src": "/api/google",
+      "dest": "/api/google.js"
+    },
+    {
+      "src": "/api/google/callback",
+      "dest": "/api/googleCallback.js"
+    },
+    {
+      "src": "/api/register",
+      "dest": "/api/register.js"
+    },
+    {
+      "src": "/api/login",
+      "dest": "/api/login.js"
+    },
+    {
+      "src": "/api/userProfile",
+      "dest": "/api/userProfile.js"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/uploads/$1"
     }
   ]
 }
