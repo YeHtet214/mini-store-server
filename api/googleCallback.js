@@ -2,6 +2,14 @@ import passport from "../auth/passport.js";
 import * as UserService from "../services/userService";
 
 export default function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // Handle OPTIONS method for CORS preflight request
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end(); // Respond OK to preflight
+    }
     if (req.method === "GET") {
         passport.authenticate("google", async (err, user, info) => {
             if (err || !user) {
