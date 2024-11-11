@@ -1,5 +1,5 @@
 import passport from "../auth/passport.js";
-import * as UserService from "../services/userService";
+import * as UserService from "../services/userService.js";
 
 export default function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
