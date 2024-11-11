@@ -1,4 +1,4 @@
-import * as ProductService from '../../services/productService.js';
+import * as ProductService from '../services/productService.js';
 
 export default async function handler(req, res) {
     if (req.method === 'GET') {

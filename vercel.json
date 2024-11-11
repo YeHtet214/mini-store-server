@@ -21,19 +21,11 @@
     },
     {
       "src": "/api/products",
-      "dest": "/api/products/get-products.js"
+      "dest": "/api/manageProducts.js"
     },
     {
-      "src": "/api/products/add",
-      "dest": "/api/products/add-products.js"
-    },
-    {
-      "src": "/api/products/update",
-      "dest": "/api/products/update-product.js"
-    },
-    {
-      "src": "/api/products/delete",
-      "dest": "/api/products/delete-products.js"
+      "src": "/api/product-by-id",
+      "dest": "/api/product-by-id.js"
     },
     {
       "src": "/api/orders",
@@ -60,16 +52,8 @@
       "dest": "/api/orders/delete-order.js"
     },
     {
-      "src": "/api/manageUsers/create",
-      "dest": "/api/manageUsers/create-user.js"
-    },
-    {
-      "src": "/api/manageUsers/update",
-      "dest": "/api/manageUsers/update-user.js"
-    },
-    {
-      "src": "/api/manageUsers/delete",
-      "dest": "/api/manageUsers/delete-user.js"
+      "src": "/api/users",
+      "dest": "/api/manageUsers.js"
     },
     {
       "src": "/api/google",
