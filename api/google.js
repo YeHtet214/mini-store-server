@@ -1,4 +1,4 @@
-import passport from "../auth/passport";
+import passport from "../auth/passport.js";
 
 export default function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
