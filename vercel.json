@@ -44,7 +44,7 @@
       "dest": "/api/google.js"
     },
     {
-      "src": "/api/google/callback",
+      "src": "/api/googleCallback",
       "dest": "/api/googleCallback.js"
     },
     {
