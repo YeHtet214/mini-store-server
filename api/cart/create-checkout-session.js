@@ -23,8 +23,8 @@ export default async function handler(req, res) {
                 payment_method_types: ['card'],
                 line_items: lineItems,
                 mode: 'payment',
-                success_url: 'https://your-domain.com/success', // Update with actual domain
-                cancel_url: 'https://your-domain.com/cancel', // Update with actual domain
+                success_url: 'http://localhost:5173/success', // Update with actual domain
+                cancel_url: 'http://localhost:5173/cancel', // Update with actual domain
             });
 
             res.status(200).json({ id: session.id });
