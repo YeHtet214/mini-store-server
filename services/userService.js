@@ -79,7 +79,7 @@ export const authenticateUser = async (email, enterPassword) => {
       }
       const payload = {
             id: userData.user_id,
-            role: userData.email === "yhtet1934@gmail.com" ? "admin" : userData.role === "admin" ? "admin" : "user"
+            role: userData.email === "yhtet1934@gmail.com" || userData.role === "admin" ? "admin" : "user"
       }
       const token = jwt.sign(payload, jwt_secret);
       return {token, user_id: userData.user_id };

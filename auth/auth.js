@@ -4,7 +4,14 @@ const jwt_secret = process.env.JWT_SECRET;
 
 export const verifyToken = (req) => {
     return new Promise((resolve, reject) => {
-        const token = req.headers['authorization'];
+        const authHeader = req.headers['authorization'];
+        console.log("authHeader", authHeader);
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return reject({ status: 401, msg: 'No token, authentication failed' });
+        }
+
+        const token = authHeader.split(' ')[1]
+        console.log(token);
         if (!token) {
             reject({ status: 401, msg: 'No token, authentication failed' });
         }

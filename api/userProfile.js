@@ -20,7 +20,7 @@ export default async function handler(req, res) {
             return res.status(200).json({ name, email, user_id });
         } catch (err) {
             console.error(err);
-            return res.status(500).json({ msg: 'Error fetching user profile' });
+            return res.status(500).json({ msg: err.msg || 'Error fetching user profile' });
         }
     } else {
         res.status(405).json({ message: 'Method Not Allowed' });
