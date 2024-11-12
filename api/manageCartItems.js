@@ -1,9 +1,16 @@
-import * as CartService from "../../services/cartService.js";
+import * as CartService from "../services/cartService.js";
 
 export default async function handler(req, res) {
     const { method } = req;
-
-    if (method === 'POST') {
+    if (method === 'GET') {
+        try {
+            const { user_id } = req.query;
+            const cartItems = await CartService.getCartItemsByUserId(user_id);
+            return res.status(200).json(cartItems);
+        } catch (error) {
+            return res.status(500).json({ message: "Error fetching cart items", error });
+        }
+    }else if (method === 'POST') {
         // Creating a new cart item
         const { userId, productId, quantity } = req.body.data;
         try {

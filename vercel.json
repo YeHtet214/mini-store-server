@@ -12,24 +12,20 @@
   ],
   "routes": [
     {
-      "src": "/api/cart/([^/]+)/cartItems",
-      "dest": "/api/cart/[user_id].js"
+      "src": "/api/payment/create-checkout-session",
+      "dest": "/api/payment/create-checkout-session.js"
     },
     {
-      "src": "/api/cart/items/update",
-      "dest": "/api/cart/update.js"
+      "src": "/api/cartItems",
+      "dest": "/api/manageCartItems.js"
     },
     {
       "src": "/api/products",
       "dest": "/api/manageProducts.js"
     },
     {
-      "src": "/api/product-by-id",
-      "dest": "/api/product-by-id.js"
-    },
-    {
-      "src": "/api/orders/items",
-      "dest": "/api/get-order-items.js"
+      "src": "/api/orderItems",
+      "dest": "/api/manageOrderItems.js"
     },
     {
       "src": "/api/orders",
