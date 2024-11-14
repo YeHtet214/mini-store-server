@@ -1,16 +1,17 @@
 import * as OrderService from '../services/orderService.js';
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*'); // or your specific origin
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE', 'OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-    // Handle OPTIONS method for CORS preflight request
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end(); // Respond OK to preflight
+    const { method } = req;
+
+    if (method === 'OPTIONS') {
+        return res.status(200).end();
     }
 
-    if (req.method === 'GET') {
+    if (method === 'GET') {
         const { filter } = req.query;
         try {
             if (filter && filter === "month") {
@@ -24,7 +25,7 @@ export default async function handler(req, res) {
             console.error('Error fetching orders:', error);
             return res.status(500).json({ error: 'Failed to fetch orders' });
         }
-    } else if (req.method === 'POST') {
+    } else if (method === 'POST') {
         const { userId, totalAmount } = req.body;
         const address = req.body;
 
@@ -42,7 +43,7 @@ export default async function handler(req, res) {
             console.error('Error creating order:', error);
             return res.status(500).json({ error: 'Failed to create order' });
         }
-    } else if (req.method === 'DELETE') {
+    } else if (method === 'DELETE') {
         const { orderId } = req.query;
         try {
             const deletedOrderId = await OrderService.deleteOrder(orderId);
@@ -51,7 +52,7 @@ export default async function handler(req, res) {
             console.error('Error deleting order:', error);
             return res.status(500).json({ error: 'Failed to delete order' });
         }
-    } else if (req.method === 'PUT') {
+    } else if (method === 'PUT') {
         const { orderId } = req.query;
         const status = req.body.value;
 

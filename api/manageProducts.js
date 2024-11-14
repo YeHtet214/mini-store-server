@@ -16,12 +16,14 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
+    const { method } = req;
+
     // Handle OPTIONS method for CORS preflight request
-    if (req.method === 'OPTIONS') {
+    if (method === 'OPTIONS') {
         return res.status(200).end(); // Respond OK to preflight
     }
 
-    if (req.method === 'GET') {
+    if (method === 'GET') {
         try {
             if (req.query.id) { // get product by id
                 const product = await ProductService.getProductById(req.query.id);
@@ -34,7 +36,7 @@ export default async function handler(req, res) {
             console.error('Error fetching products:', error);
             return res.status(500).json({ error: 'Failed to fetch products' });
         }
-    } else if (req.method === 'POST') {
+    } else if (method === 'POST') {
         const form = new multiparty.Form();
         form.parse(req, async (err, fields, files) => {
             if (err) {
@@ -60,7 +62,7 @@ export default async function handler(req, res) {
                 return res.status(500).json({ error: 'Failed to upload new product' });
             }
         });
-    } else if (req.method === 'DELETE') {
+    } else if (method === 'DELETE') {
         const { id } = req.query;
         try {
             const deletedProduct = await ProductService.deletedProduct(id);
@@ -73,7 +75,7 @@ export default async function handler(req, res) {
             console.error('Error deleting product:', error);
             return res.status(500).json({ error: 'Failed to delete product' });
         }
-    } else if (req.method === 'PUT') {
+    } else if (method === 'PUT') {
         const form = new multiparty.Form();
         form.parse(req, async (err, fields, files) => {
             if (err) {

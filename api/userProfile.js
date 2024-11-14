@@ -6,11 +6,12 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE', 'OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-    if (req.method === 'OPTIONS') {
+    const { method } = req;
+    if (method === 'OPTIONS') {
         return res.status(200).end();
     }
 
-    if (req.method === 'GET') {
+    if (method === 'GET') {
         try {
             await verifyToken(req);
             const userData = await UserService.getUserDataById(req.user.id);

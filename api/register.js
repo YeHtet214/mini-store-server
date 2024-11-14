@@ -5,12 +5,13 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
+    const { method } = req;
     // Handle OPTIONS method for CORS preflight request
-    if (req.method === 'OPTIONS') {
+    if (method === 'OPTIONS') {
         return res.status(200).end(); // Respond OK to preflight
     }
 
-    if (req.method === 'POST') {
+    if (method === 'POST') {
         const { name, email, password } = req.body;
         try {
             const newUser = await UserService.registerUser(name, email, password);

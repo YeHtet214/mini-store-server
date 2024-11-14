@@ -5,12 +5,13 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
+    const { method } = req;
     // Handle OPTIONS method for CORS preflight request
-    if (req.method === 'OPTIONS') {
+    if (method === 'OPTIONS') {
         return res.status(200).end(); // Respond OK to preflight
     }
 
-    if (req.method === 'GET') {
+    if (method === 'GET') {
         try {
             const users = await UserService.getAllUsers();
             console.log("users list: ", users);
@@ -19,7 +20,7 @@ export default async function handler(req, res) {
             console.error(err);
             return res.status(500).json({msg: 'Error getting users'});
         }
-    } else if (req.method === 'POST') {
+    } else if (method === 'POST') {
         const userData = req.body;
         try {
             const createdUser = await UserService.createNewUserByAdmin(userData);
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
             console.error('Error creating user:', error);
             return res.status(500).json({ error: 'Failed to create user' });
         }
-    } else if (req.method === 'DELETE') {
+    } else if (method === 'DELETE') {
         const { userId } = req.query;
         try {
             const deletedUser = await UserService.deleteUser(userId);
@@ -38,7 +39,7 @@ export default async function handler(req, res) {
             console.error(err);
             return res.status(500).json({ msg: 'Error deleting user' });
         }
-    } else if (req.method === 'PUT') {
+    } else if (method === 'PUT') {
         const { id } = req.query;
         const userData = req.body;
 
