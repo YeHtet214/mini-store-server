@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
         try {
             const users = await UserService.getAllUsers();
+            console.log("users list: ", users);
             return res.status(200).json(users);
         } catch (err) {
             console.error(err);

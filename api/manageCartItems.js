@@ -12,7 +12,8 @@ export default async function handler(req, res) {
         }
     }else if (method === 'POST') {
         // Creating a new cart item
-        const { userId, productId, quantity } = req.body.data;
+        const { userId, productId, quantity } = req.body;
+        console.log(req.body);
         try {
             const newCartItem = await CartService.insertNewCartItem(userId, productId, quantity);
             return res.status(200).json(newCartItem);

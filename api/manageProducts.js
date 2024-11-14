@@ -22,11 +22,9 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'GET') {
-        const { id } = req.query;
-
         try {
-            if (id) { // get product by id
-                const product = await ProductService.getProductById(id);
+            if (req.query.id) { // get product by id
+                const product = await ProductService.getProductById(req.query.id);
                 return res.status(200).json(product);
             } else {
                 const products = await api.getAllProducts();

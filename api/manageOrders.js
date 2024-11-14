@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
         const { filter } = req.query;
         try {
-            if (filter === "month") {
+            if (filter && filter === "month") {
                 const monthlyOrders = await OrderService.getMonthlyOrderTotal();
                 return res.status(200).json(monthlyOrders);
             } else {
