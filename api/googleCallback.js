@@ -1,10 +1,8 @@
 import passport from "../auth/passport.js";
 import * as UserService from "../services/userService.js";
 
-const origins = ["https://mini-store-omega.vercel.app", "http://localhost:5173/auth/login"];
-
 export default function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', "http://localhost:5173");
+    res.setHeader('Access-Control-Allow-Origin', "*");
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -15,7 +13,7 @@ export default function handler(req, res) {
     if (req.method === "GET") {
         passport.authenticate("google", async (err, user, info) => {
             if (err || !user) {
-                return res.redirect("http://localhost:5173/auth/login?error=oauth_failed");
+                return res.redirect("https://mini-store-o8pp.vercel.app/auth/login?error=oauth_failed");
             }
 
             try {
@@ -32,7 +30,7 @@ export default function handler(req, res) {
                     ({ token, user_id } = await UserService.registerUser(user.name, user.email, user.password, role));
                 }
 
-                res.redirect(`http://localhost:5173?token=${token}&uer_id=${user_id}`);
+                res.redirect(`https://mini-store-o8pp.vercel.app?token=${token}&user_id=${user_id}`);
 
             } catch (error) {
                 console.error("Error in Google callback:", error);
