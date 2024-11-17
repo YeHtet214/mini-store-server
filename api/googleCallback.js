@@ -30,7 +30,7 @@ export default function handler(req, res) {
                     ({ token, user_id } = await UserService.registerUser(user.name, user.email, user.password, role));
                 }
 
-                res.redirect(`https://mini-store-o8pp.vercel.app?token=${token}&user_id=${user_id}`);
+                res.redirect(`https://mini-store-o8pp.vercel.app/?token=${token}&user_id=${user_id}`);
 
             } catch (error) {
                 console.error("Error in Google callback:", error);
