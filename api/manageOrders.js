@@ -28,8 +28,6 @@ export default async function handler(req, res) {
     } else if (method === 'POST') {
         const { userId, totalAmount, address } = req.query;
 
-        console.log("User Id, Total Amount, Address: ", userId, totalAmount, address);
-
         try {
             if (address) { // add new address rather than user
                 const createdAddress = await OrderService.addNewAddress(userId, address);

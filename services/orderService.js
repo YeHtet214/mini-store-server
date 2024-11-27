@@ -125,6 +125,7 @@ export const getMonthlyOrderTotal = async () => {
 
 export const addNewAddress = async (userId, location) => {
     const { address, city, state, postcode, country } = location;
+    console.log("Address", address, "City: ", city, "State: ", state, "Postcode: ", postcode, "Country: ", country);
     try {
         const { rows } = await client.query(
             `
