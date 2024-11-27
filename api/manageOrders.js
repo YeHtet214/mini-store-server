@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
         try {
             if (address) { // add new address rather than user
-                const createdAddress = await OrderService.addNewAddress(address);
+                const createdAddress = await OrderService.addNewAddress(userId, address);
                 return res.status(201).json(createdAddress);
             } else {
                 const order = await OrderService.createNewOrder({ userId, totalAmount });

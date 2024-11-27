@@ -123,21 +123,15 @@ export const getMonthlyOrderTotal = async () => {
     }
 };
 
-export const addNewAddress = async ({
-    address,
-    city,
-    state,
-    postcode,
-    country,
-    user_id,
-}) => {
+export const addNewAddress = async (userId, location) => {
+    const { address, city, state, postcode, country } = location;
     try {
         const { rows } = await client.query(
             `
                   INSERT INTO addresses (address_line_1, city, state, postal_code, country, user_id)
                   VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;
             `,
-            [address, city, state, postcode, country, user_id]
+            [address, city, state, postcode, country, userId]
         );
         return rows[0];
     } catch (error) {
