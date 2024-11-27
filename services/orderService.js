@@ -41,6 +41,7 @@ export const createNewOrder = async ({ userId, totalAmount }) => {
             parseInt(totalAmount),
             "Processing",
         ]);
+        console.log("Created order: ", rows);
         return rows[0];
     } catch (error) {
         console.log(error);
