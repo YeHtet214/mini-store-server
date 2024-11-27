@@ -30,7 +30,7 @@ export const getAllOrderItems = async () => {
 
 export const createNewOrder = async ({ userId, totalAmount }) => {
     const query = `
-            INSERT INTO orders (user_id, total_amount, status)
+            INSERT INTO orders (user_id, total_amount, order_status)
             VALUES ($1, $2, $3)
             RETURNING *
       `;
