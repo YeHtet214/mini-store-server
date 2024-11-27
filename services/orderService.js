@@ -38,7 +38,7 @@ export const createNewOrder = async ({ userId, totalAmount }) => {
     try {
         const { rows } = await client.query(query, [
             userId,
-            totalAmount,
+            parseInt(totalAmount),
             "Processing",
         ]);
         return rows[0];
