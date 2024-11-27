@@ -26,8 +26,9 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'Failed to fetch orders' });
         }
     } else if (method === 'POST') {
-        const { userId, totalAmount } = req.body;
-        const address = req.body;
+        const { userId, totalAmount, address } = req.query;
+
+        console.log("User Id, Total Amount, Address: ", userId, totalAmount, address);
 
         try {
             if (address) { // add new address rather than user
