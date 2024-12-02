@@ -68,6 +68,8 @@ export const addOrderItems = async (orderId, items) => {
             })
         );
 
+        console.log("New order Items: ", NEW_ORDER_ITEMS)
+
         return NEW_ORDER_ITEMS;
     } catch (error) {
         console.log(error);
