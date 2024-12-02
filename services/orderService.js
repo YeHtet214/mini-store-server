@@ -50,7 +50,7 @@ export const createNewOrder = async ({ userId, totalAmount }) => {
 
 export const addOrderItems = async (orderId, items) => {
     const query = `
-            INSERT INTO orderitems (order_id, product_id, price, quantity, sub_total)
+            INSERT INTO order_item (order_id, product_id, price, quantity, sub_total)
             VALUES ($1, $2, $3, $4, $5)
             RETURNING *
       `;
@@ -139,7 +139,7 @@ export const addNewAddress = async (userId, location) => {
     } catch (error) {
         if (error.code == 23505) {
             // checking error code for duplilcate entry
-            return { status: 200, msg: "Address already exist" };
+            return { status: 200, msg: "Address already exist", data: location  };
         } else {
             console.log(error);
         }
