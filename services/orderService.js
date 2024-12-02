@@ -15,10 +15,8 @@ export const getAllOrders = async (userId) => {
 export const getAllOrderItems = async () => {
       try {
             const { rows } = await client.query(`
-                  SELECT order_item_id, name, order_id, orderitems.price, orderitems.quantity, sub_total
+                  SELECT *
                   FROM orderitems
-                  INNER JOIN products 
-                  ON orderitems.product_id = products.id;
             `);
             return rows;
       } catch (error) {
