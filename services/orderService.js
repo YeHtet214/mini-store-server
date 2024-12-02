@@ -15,7 +15,7 @@ export const getAllOrders = async (userId) => {
 export const getAllOrderItems = async () => {
       try {
             const { rows } = await client.query(`
-                  SELECT * from order_items
+                  SELECT * from order_item
             `);
             return rows;
       } catch (error) {
