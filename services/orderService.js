@@ -5,10 +5,11 @@ export const getAllOrders = async () => {
             const { rows } = await client.query(`
                   SELECT order_id, user_id, order_date, total_amount, order_status 
                   FROM orders
-//                   INNER JOIN users 
-//                   ON orders.user_id = users.user_-id;
+                   INNER JOIN users 
+                  ON orders.user_id = users.user_id;
             `);
-            return rows;
+            console.log("Orders: ", rows);
+            return rows
       } catch (error) {
           return {success: false, msg: "There is an error getting the orders: ", error};
       }
