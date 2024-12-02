@@ -1,14 +1,11 @@
 import { client } from "../db/index.js";
 
-export const getAllOrders = async () => {
+export const getAllOrders = async (userId) => {
       try {
             const { rows } = await client.query(`
-                  SELECT order_id, user_id, order_date, total_amount, order_status 
-                  FROM orders
-                   INNER JOIN users 
-                  ON orders.user_id = users.user_id;
-            `);
-            console.log("Orders: ", rows);
+                  SELECT * from orders WHERE user_id = $1
+            `, [userId]);
+            console.log("Orders: ", rows, "userId", userId);
             return rows
       } catch (error) {
           return {success: false, msg: "There is an error getting the orders: ", error};
@@ -110,7 +107,7 @@ export const deleteOrder = async (orderId) => {
     }
 };
 
-export const getMonthlyOrderTotal = async () => {
+export const getMonthlyOrderTotal = async (userId) => {
     try {
         const { rows } = await client.query(`
                   SELECT 
