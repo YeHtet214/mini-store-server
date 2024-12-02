@@ -50,8 +50,8 @@ export const createNewOrder = async ({ userId, totalAmount }) => {
 
 export const addOrderItems = async (orderId, items) => {
     const query = `
-            INSERT INTO order_item (order_id, product_id, quantity, sub_total)
-            VALUES ($1, $2, $3, $4)
+            INSERT INTO order_item (order_id, product_id, name,  price, quantity, sub_total)
+            VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING *
       `;
 
@@ -61,6 +61,8 @@ export const addOrderItems = async (orderId, items) => {
                 const { rows } = await client.query(query, [
                     parseInt(orderId),
                     item.product_id,
+                    item.name,
+                    parseInt(item.price),
                     item.quantity,
                     item.quantity * item.price,
                 ]);
