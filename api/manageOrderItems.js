@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     } else if (method === 'POST') {
         try {
             const { orderId } = req.query;
-            const { items } = req.body;
+            const items = req.body;
             console.log("OrderId: ", orderId, "Items: ", items);
             const newItems = await OrderService.addOrderItems(orderId, items);
             return res.status(201).json(newItems);
