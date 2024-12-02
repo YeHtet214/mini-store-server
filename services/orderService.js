@@ -51,7 +51,7 @@ export const createNewOrder = async ({ userId, totalAmount }) => {
 export const addOrderItems = async (orderId, items) => {
     const query = `
             INSERT INTO order_item (order_id, product_id, quantity, sub_total)
-            VALUES ($1, $2, $3, $4, $5)
+            VALUES ($1, $2, $3, $4)
             RETURNING *
       `;
 
