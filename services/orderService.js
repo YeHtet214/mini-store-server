@@ -59,7 +59,7 @@ export const addOrderItems = async (orderId, items) => {
         const NEW_ORDER_ITEMS = await Promise.all(
             items?.map(async (item) => {
                 const { rows } = await client.query(query, [
-                    orderId,
+                    parseInt(orderId),
                     item.product_id,
                     item.quantity,
                     item.quantity * item.price,
