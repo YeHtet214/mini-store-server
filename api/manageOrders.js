@@ -26,14 +26,15 @@ export default async function handler(req, res) {
             return res.status(500).json({ error: 'Failed to fetch orders' });
         }
     } else if (method === 'POST') {
-        const { userId, totalAmount, address } = req.query;
-        console.log(userId, address);
+        const { userId, totalAmount, city, country, postcode, state, address } = req.query;
+        console.log(userId, city, country, postcode);
         try {
-            if (address) { // add new address rather than user
-                const createdAddress = await OrderService.addNewAddress(userId, address);
+            if (city && country && postcode) { // add new address rather than user
+                const createdAddress = await OrderService.addNewAddress(userId, { city, country, postcode, address, state });
                 return res.status(201).json(createdAddress);
             } else {
                 const order = await OrderService.createNewOrder({ userId, totalAmount });
+                console.log(order);
                 return res.status(201).json(order);
             }
         }
