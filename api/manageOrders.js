@@ -1,4 +1,5 @@
 import * as OrderService from '../services/orderService.js';
+import Order from "../routes/order.js";
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,11 +17,14 @@ export default async function handler(req, res) {
         console.log("userid in order getting", userId)
         console.log("filter: ", filter, "Userid: ", userId);
         try {
+            if (userId) {
+                const ordersByUserId = await OrderService.getOrdersByUserId(userId);
+            }
             if (filter && filter === "month") {
                 const monthlyOrders = await OrderService.getMonthlyOrderTotal(userId);
                 return res.status(200).json(monthlyOrders);
             } else {
-                const orders = await OrderService.getAllOrders(userId);
+                const orders = await OrderService.getAllOrders();
                 return res.status(200).json(orders);
             }
         } catch (error) {
