@@ -12,9 +12,10 @@ export default async function handler(req, res) {
     }
 
     if (method === 'GET') {
-        const userId = req.query.userId;
+        const { userId } = req.query;
         const filter = req.query.filter;
         console.log("userid in order getting", userId)
+        console.log("query", req.query);
         try {
             if (filter && filter === "month") {
                 const monthlyOrders = await OrderService.getMonthlyOrderTotal(userId);
