@@ -19,8 +19,8 @@ export default async function handler(req, res) {
         try {
             if (userId) {
                 const ordersByUserId = await OrderService.getOrdersByUserId(userId);
-            }
-            if (filter && filter === "month") {
+                return res.status(200).json(ordersByUserId);
+            } else if (filter && filter === "month") {
                 const monthlyOrders = await OrderService.getMonthlyOrderTotal(userId);
                 return res.status(200).json(monthlyOrders);
             } else {
