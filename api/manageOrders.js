@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     }
 
     if (method === 'GET') {
-        const { userId } = req.body;
+        const { userId } = req.params.userId;
         const filter = req.query.filter;
         console.log("userid in order getting", userId)
         console.log("query", req.query);
