@@ -12,7 +12,8 @@ export default async function handler(req, res) {
     }
 
     if (method === 'GET') {
-        const { filter, userId } = req.query;
+        const userId = req.query.userId;
+        const filter = req.query.filter;
         console.log("userid in order getting", userId)
         try {
             if (filter && filter === "month") {
