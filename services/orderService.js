@@ -3,7 +3,7 @@ import { client } from "../db/index.js";
 export const getAllOrders = async () => {
       try {
             const { rows } = await client.query(`
-                  SELECT * from orders WHERE
+                  SELECT * from orders
             `);
             console.log("Orders: ", rows);
             return rows
