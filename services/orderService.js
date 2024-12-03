@@ -4,18 +4,17 @@ export const getAllOrders = async () => {
       try {
             const { rows } = await client.query(`
                   SELECT 
-                    orders.order_id
-                    orders.order_status
-                    orders.total_amount
-                    orders.order_date
-                    orders.user_id
+                    orders.order_id,
+                    orders.order_status,
+                    orders.total_amount,
+                    orders.order_date,
                     users.name
                   FROM 
                     orders
                   INNER JOIN 
                     users
                   ON 
-                    orders.user_id = users.user_id
+                    orders.user_id = users.user_id;
             `);
             console.log("Orders: ", rows);
             return rows
