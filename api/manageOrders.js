@@ -17,10 +17,7 @@ export default async function handler(req, res) {
         console.log("userid in order getting", userId)
         console.log("filter: ", filter, "Userid: ", userId);
         try {
-            if (userId) {
-                const ordersByUserId = await OrderService.getOrdersByUserId(userId);
-                return res.status(200).json(ordersByUserId);
-            } else if (filter && filter === "month") {
+            if (filter && filter === "month") {
                 const monthlyOrders = await OrderService.getMonthlyOrderTotal(userId);
                 return res.status(200).json(monthlyOrders);
             } else {

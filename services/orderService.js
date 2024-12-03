@@ -12,19 +12,17 @@ export const getAllOrders = async () => {
       }
 }
 
-export const getOrdersByUserId = async (userId) => {
-    try {
-        const { rows } = await client.query(`
-                  SELECT * from orders WHERE user_id = $1
-            `, [userId]);
-        console.log("Orders: ", rows, "userId", userId);
-        return rows
-    } catch (error) {
-        return {success: false, msg: "There is an error getting the orders: ", error};
-    }
-}
-
-
+// export const getOrdersByUserId = async (userId) => {
+//     try {
+//         const { rows } = await client.query(`
+//                   SELECT * from orders WHERE user_id = $1
+//             `, [userId]);
+//         console.log("Orders: ", rows, "userId", userId);
+//         return rows
+//     } catch (error) {
+//         return {success: false, msg: "There is an error getting the orders: ", error};
+//     }
+// }
 
 export const getAllOrderItems = async () => {
       try {
